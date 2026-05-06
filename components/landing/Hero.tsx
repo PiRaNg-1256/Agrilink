@@ -15,16 +15,6 @@ export default function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Entrance: stagger children in
-      gsap.from(contentRef.current!.children, {
-        y: 60,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: 'power3.out',
-      })
-
-      // Parallax background
       gsap.to(bgRef.current, {
         yPercent: 30,
         ease: 'none',
@@ -36,7 +26,6 @@ export default function Hero() {
         },
       })
 
-      // Scroll fade-out: fromTo ensures clean reverse when scrolling back up
       gsap.fromTo(
         contentRef.current,
         { opacity: 1, y: 0 },
@@ -66,21 +55,30 @@ export default function Hero() {
       </div>
 
       <div ref={contentRef} className="text-center px-4 max-w-5xl mx-auto">
-        <div className="mb-4 inline-block">
+        <div className="mb-4 inline-block animate-fade-in-up" style={{ animationDelay: '0ms' }}>
           <span className="text-xs font-bold tracking-[0.3em] text-green-400 uppercase border border-green-400/30 px-4 py-1.5 rounded-full">
             Direct Farm to Consumer
           </span>
         </div>
-        <h1 className="text-6xl md:text-8xl font-black leading-none mb-6">
+        <h1
+          className="text-6xl md:text-8xl font-black leading-none mb-6 animate-fade-in-up"
+          style={{ animationDelay: '150ms' }}
+        >
           <span className="block text-white">Farm Fresh.</span>
           <span className="block bg-gradient-to-r from-green-400 to-yellow-400 bg-clip-text text-transparent">
             Direct to You.
           </span>
         </h1>
-        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+        <p
+          className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fade-in-up"
+          style={{ animationDelay: '300ms' }}
+        >
           Agrilink connects small-scale farmers directly with consumers — no middlemen, fairer prices, fresher produce.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div
+          className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up"
+          style={{ animationDelay: '450ms' }}
+        >
           <Link href="/shop">
             <Button size="lg" className="bg-green-500 hover:bg-green-400 text-black font-bold px-8 text-base">
               Shop Fresh Produce

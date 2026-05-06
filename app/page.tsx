@@ -3,6 +3,9 @@ import Footer from '@/components/shared/Footer'
 import Hero from '@/components/landing/Hero'
 import HowItWorks from '@/components/landing/HowItWorks'
 import FeaturedProducts from '@/components/landing/FeaturedProducts'
+import ConsumerTestimonials from '@/components/landing/ConsumerTestimonials'
+import FarmerTestimonials from '@/components/landing/FarmerTestimonials'
+import PlatformComparison from '@/components/landing/PlatformComparison'
 import FarmerSpotlight from '@/components/landing/FarmerSpotlight'
 
 export default function Home() {
@@ -12,6 +15,9 @@ export default function Home() {
       <Hero />
       <HowItWorks />
       <FeaturedProducts />
+      <ConsumerTestimonials />
+      <FarmerTestimonials />
+      <PlatformComparison />
       <FarmerSpotlight />
       <Footer />
     </main>
