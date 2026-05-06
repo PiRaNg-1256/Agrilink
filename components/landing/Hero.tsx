@@ -10,30 +10,48 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null)
-  const headlineRef = useRef<HTMLHeadingElement>(null)
-  const subRef = useRef<HTMLParagraphElement>(null)
-  const ctaRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
   const bgRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline()
-      tl.from(headlineRef.current, { y: 80, opacity: 0, duration: 1.2, ease: 'power4.out' })
-        .from(subRef.current, { y: 40, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6')
-        .from(ctaRef.current, { y: 30, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-
-      gsap.to(bgRef.current, {
-        yPercent: 40,
-        ease: 'none',
-        scrollTrigger: { trigger: heroRef.current, start: 'top top', end: 'bottom top', scrub: true },
-      })
-
-      gsap.to([headlineRef.current, subRef.current, ctaRef.current], {
+      // Entrance: stagger children in
+      gsap.from(contentRef.current!.children, {
+        y: 60,
         opacity: 0,
-        y: -60,
-        ease: 'none',
-        scrollTrigger: { trigger: heroRef.current, start: '30% top', end: '60% top', scrub: true },
+        duration: 1,
+        stagger: 0.15,
+        ease: 'power3.out',
       })
+
+      // Parallax background
+      gsap.to(bgRef.current, {
+        yPercent: 30,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      })
+
+      // Scroll fade-out: fromTo ensures clean reverse when scrolling back up
+      gsap.fromTo(
+        contentRef.current,
+        { opacity: 1, y: 0 },
+        {
+          opacity: 0,
+          y: -40,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: '20% top',
+            end: '60% top',
+            scrub: true,
+          },
+        }
+      )
     }, heroRef)
 
     return () => ctx.revert()
@@ -47,22 +65,22 @@ export default function Hero() {
         <div className="absolute top-1/3 left-1/3 w-[300px] h-[300px] bg-yellow-400/5 rounded-full blur-[80px]" />
       </div>
 
-      <div className="text-center px-4 max-w-5xl mx-auto">
+      <div ref={contentRef} className="text-center px-4 max-w-5xl mx-auto">
         <div className="mb-4 inline-block">
           <span className="text-xs font-bold tracking-[0.3em] text-green-400 uppercase border border-green-400/30 px-4 py-1.5 rounded-full">
             Direct Farm to Consumer
           </span>
         </div>
-        <h1 ref={headlineRef} className="text-6xl md:text-8xl font-black leading-none mb-6">
+        <h1 className="text-6xl md:text-8xl font-black leading-none mb-6">
           <span className="block text-white">Farm Fresh.</span>
           <span className="block bg-gradient-to-r from-green-400 to-yellow-400 bg-clip-text text-transparent">
             Direct to You.
           </span>
         </h1>
-        <p ref={subRef} className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
           Agrilink connects small-scale farmers directly with consumers — no middlemen, fairer prices, fresher produce.
         </p>
-        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/shop">
             <Button size="lg" className="bg-green-500 hover:bg-green-400 text-black font-bold px-8 text-base">
               Shop Fresh Produce
