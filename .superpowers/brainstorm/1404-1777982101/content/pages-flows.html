@@ -1,0 +1,121 @@
+<h2>Agrilink — Pages & User Flows</h2>
+<p class="subtitle">MVP page structure for both farmer and consumer roles</p>
+
+<div class="section">
+  <h3 style="color:#22c55e;margin-bottom:12px;">🌾 Public Pages</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <div style="background:#1a1a2e;border:1px solid #22c55e33;border-radius:8px;padding:14px;">
+      <div style="color:#facc15;font-weight:700;font-size:13px;margin-bottom:6px;">/ — Landing Page</div>
+      <div style="color:#94a3b8;font-size:12px;line-height:1.6;">
+        • Cinematic hero (GSAP scroll)<br/>
+        • "How it works" section<br/>
+        • Featured products grid<br/>
+        • Farmer spotlight<br/>
+        • CTA: Join as Farmer / Shop Now
+      </div>
+    </div>
+    <div style="background:#1a1a2e;border:1px solid #22c55e33;border-radius:8px;padding:14px;">
+      <div style="color:#facc15;font-weight:700;font-size:13px;margin-bottom:6px;">/shop — Product Listing</div>
+      <div style="color:#94a3b8;font-size:12px;line-height:1.6;">
+        • Browse all products<br/>
+        • Filter by category<br/>
+        • Delivery vs pickup toggle<br/>
+        • Product cards with farmer info
+      </div>
+    </div>
+    <div style="background:#1a1a2e;border:1px solid #22c55e33;border-radius:8px;padding:14px;">
+      <div style="color:#facc15;font-weight:700;font-size:13px;margin-bottom:6px;">/product/[id]</div>
+      <div style="color:#94a3b8;font-size:12px;line-height:1.6;">
+        • Product detail + images<br/>
+        • Farmer profile snippet<br/>
+        • Delivery/pickup options<br/>
+        • Add to cart button
+      </div>
+    </div>
+    <div style="background:#1a1a2e;border:1px solid #22c55e33;border-radius:8px;padding:14px;">
+      <div style="color:#facc15;font-weight:700;font-size:13px;margin-bottom:6px;">/auth — Login / Register</div>
+      <div style="color:#94a3b8;font-size:12px;line-height:1.6;">
+        • Email + password<br/>
+        • Google OAuth<br/>
+        • Role selector on signup<br/>
+        • (Farmer or Consumer)
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3 style="color:#22c55e;margin-bottom:12px;">🛒 Consumer Flow</h3>
+  <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px;">
+    <div style="background:#22c55e;color:#000;padding:6px 12px;border-radius:20px;font-weight:700;">Browse /shop</div>
+    <div style="color:#facc15;">→</div>
+    <div style="background:#1a1a2e;border:1px solid #22c55e44;color:#fff;padding:6px 12px;border-radius:20px;">Product Detail</div>
+    <div style="color:#facc15;">→</div>
+    <div style="background:#1a1a2e;border:1px solid #22c55e44;color:#fff;padding:6px 12px;border-radius:20px;">Cart /cart</div>
+    <div style="color:#facc15;">→</div>
+    <div style="background:#1a1a2e;border:1px solid #22c55e44;color:#fff;padding:6px 12px;border-radius:20px;">Checkout /checkout</div>
+    <div style="color:#facc15;">→</div>
+    <div style="background:#facc15;color:#000;padding:6px 12px;border-radius:20px;font-weight:700;">Order Confirmed</div>
+  </div>
+  <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <div style="background:#1a1a2e;border:1px solid #22c55e33;border-radius:8px;padding:14px;">
+      <div style="color:#facc15;font-weight:700;font-size:13px;margin-bottom:6px;">/cart</div>
+      <div style="color:#94a3b8;font-size:12px;line-height:1.6;">
+        • Items list + quantity<br/>
+        • Remove items<br/>
+        • Total price<br/>
+        • Proceed to checkout
+      </div>
+    </div>
+    <div style="background:#1a1a2e;border:1px solid #22c55e33;border-radius:8px;padding:14px;">
+      <div style="color:#facc15;font-weight:700;font-size:13px;margin-bottom:6px;">/checkout (fake)</div>
+      <div style="color:#94a3b8;font-size:12px;line-height:1.6;">
+        • Delivery address or pickup<br/>
+        • Fake UPI/card UI<br/>
+        • "Pay ₹XXX" → instant confirm<br/>
+        • Order saved to DB
+      </div>
+    </div>
+  </div>
+  <div style="background:#1a1a2e;border:1px solid #22c55e33;border-radius:8px;padding:14px;margin-top:10px;">
+    <div style="color:#facc15;font-weight:700;font-size:13px;margin-bottom:6px;">/orders — My Orders</div>
+    <div style="color:#94a3b8;font-size:12px;">Order history with status badges (Pending → Confirmed → Shipped → Delivered)</div>
+  </div>
+</div>
+
+<div class="section">
+  <h3 style="color:#22c55e;margin-bottom:12px;">🌱 Farmer Flow</h3>
+  <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px;margin-bottom:10px;">
+    <div style="background:#22c55e;color:#000;padding:6px 12px;border-radius:20px;font-weight:700;">Register as Farmer</div>
+    <div style="color:#facc15;">→</div>
+    <div style="background:#1a1a2e;border:1px solid #22c55e44;color:#fff;padding:6px 12px;border-radius:20px;">Dashboard</div>
+    <div style="color:#facc15;">→</div>
+    <div style="background:#1a1a2e;border:1px solid #22c55e44;color:#fff;padding:6px 12px;border-radius:20px;">Add Product</div>
+    <div style="color:#facc15;">→</div>
+    <div style="background:#facc15;color:#000;padding:6px 12px;border-radius:20px;font-weight:700;">Receive Orders</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <div style="background:#1a1a2e;border:1px solid #22c55e33;border-radius:8px;padding:14px;">
+      <div style="color:#facc15;font-weight:700;font-size:13px;margin-bottom:6px;">/dashboard</div>
+      <div style="color:#94a3b8;font-size:12px;line-height:1.6;">
+        • Stats: total products, orders<br/>
+        • My listings grid<br/>
+        • Toggle availability on/off<br/>
+        • Edit / delete products
+      </div>
+    </div>
+    <div style="background:#1a1a2e;border:1px solid #22c55e33;border-radius:8px;padding:14px;">
+      <div style="color:#facc15;font-weight:700;font-size:13px;margin-bottom:6px;">/dashboard/add-product</div>
+      <div style="color:#94a3b8;font-size:12px;line-height:1.6;">
+        • Name, description, price/unit<br/>
+        • Category, stock qty<br/>
+        • Image upload (Supabase Storage)<br/>
+        • Delivery type: both/delivery/pickup
+      </div>
+    </div>
+    <div style="background:#1a1a2e;border:1px solid #22c55e33;border-radius:8px;padding:14px;grid-column:1/-1;">
+      <div style="color:#facc15;font-weight:700;font-size:13px;margin-bottom:6px;">/dashboard/orders</div>
+      <div style="color:#94a3b8;font-size:12px;">Incoming orders list. Update status: Pending → Confirmed → Shipped → Delivered</div>
+    </div>
+  </div>
+</div>
