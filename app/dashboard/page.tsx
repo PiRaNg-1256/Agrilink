@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import StatsCards from '@/components/dashboard/StatsCards'
 import ListingsGrid from '@/components/dashboard/ListingsGrid'
+import RevenueChart from '@/components/dashboard/RevenueChart'
 import { getFarmerProducts } from '@/lib/actions/products'
 import { getFarmerOrders } from '@/lib/actions/orders'
 import { Plus } from 'lucide-react'
@@ -34,6 +35,7 @@ export default async function DashboardPage() {
             </div>
           </div>
           <StatsCards productCount={products.length} orderCount={orders.length} pendingCount={pending} />
+          <RevenueChart orders={orders} />
           <h2 className="text-xl font-bold text-white mb-5">My Listings</h2>
           <ListingsGrid products={products} />
         </div>

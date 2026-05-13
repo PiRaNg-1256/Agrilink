@@ -10,6 +10,7 @@ import { useCart } from '@/components/cart/CartProvider'
 import { toast } from 'sonner'
 import type { Product } from '@/lib/types'
 import { ShoppingCart, MapPin, Truck, Store } from 'lucide-react'
+import ReviewsSection from '@/components/products/ReviewsSection'
 
 export default function ProductPage() {
   const { id } = useParams<{ id: string }>()
@@ -85,6 +86,7 @@ export default function ProductPage() {
               </div>
             </div>
           </div>
+          <ReviewsSection productId={id} />
         </div>
       </div>
       <Footer />

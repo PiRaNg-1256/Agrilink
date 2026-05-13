@@ -7,13 +7,19 @@ export async function createOrder(
   items: CartItem[],
   deliveryType: 'delivery' | 'pickup',
   address: string
-) {
+): Promise<{ demo?: boolean }> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('Unauthorized')
   if (items.length === 0) throw new Error('Cart is empty')
 
-  const byFarmer = items.reduce<Record<string, CartItem[]>>((acc, item) => {
+  const allFake = items.every(i => i.product.farmer_id.startsWith('fake-'))
+  if (allFake) return { demo: true }
+
+  const realItems = items.filter(i => !i.product.farmer_id.startsWith('fake-'))
+  if (realItems.length === 0) return { demo: true }
+
+  const byFarmer = realItems.reduce<Record<string, CartItem[]>>((acc, item) => {
     const fid = item.product.farmer_id
     if (!acc[fid]) acc[fid] = []
     acc[fid].push(item)
@@ -42,6 +48,7 @@ export async function createOrder(
   }
 
   revalidatePath('/orders')
+  return {}
 }
 
 export async function getConsumerOrders() {

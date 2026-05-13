@@ -6,11 +6,14 @@ import { Button } from '@/components/ui/button'
 import { ShoppingCart, Leaf } from 'lucide-react'
 import type { Profile } from '@/lib/types'
 import { useCart } from '@/components/cart/CartProvider'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
+import type { Locale } from '@/lib/i18n/translations'
 
 export default function Navbar() {
   const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState(true)
   const { items } = useCart()
+  const { t, locale, setLocale } = useLanguage()
   const supabase = createClient()
 
   useEffect(() => {
@@ -39,13 +42,21 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden md:flex items-center gap-6">
-          <Link href="/shop" className="text-sm text-gray-300 hover:text-green-400 transition-colors">Shop</Link>
+          <Link href="/shop" className="text-sm text-gray-300 hover:text-green-400 transition-colors">{t.nav.shop}</Link>
           {profile?.role === 'farmer' && (
-            <Link href="/dashboard" className="text-sm text-gray-300 hover:text-green-400 transition-colors">Dashboard</Link>
+            <Link href="/dashboard" className="text-sm text-gray-300 hover:text-green-400 transition-colors">{t.nav.dashboard}</Link>
           )}
         </div>
 
         <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 border border-white/10 rounded-full p-0.5">
+            {(['en', 'hi', 'kn'] as Locale[]).map(l => (
+              <button key={l} onClick={() => setLocale(l)}
+                className={`px-2.5 py-1 rounded-full text-xs font-bold transition-colors ${locale === l ? 'bg-green-500 text-black' : 'text-gray-400 hover:text-white'}`}>
+                {l === 'en' ? 'EN' : l === 'hi' ? 'हि' : 'ಕ'}
+              </button>
+            ))}
+          </div>
           {!loading && (
             <>
               {profile ? (
@@ -61,13 +72,13 @@ export default function Navbar() {
                     </Link>
                   )}
                   <Button variant="ghost" size="sm" onClick={handleSignOut} className="text-gray-300 hover:text-white">
-                    Sign Out
+                    {t.nav.signOut}
                   </Button>
                 </>
               ) : (
                 <Link href="/auth">
                   <Button size="sm" className="bg-green-500 hover:bg-green-400 text-black font-bold">
-                    Get Started
+                    {t.nav.getStarted}
                   </Button>
                 </Link>
               )}

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { CartProvider } from '@/components/cart/CartProvider'
 import { Toaster } from '@/components/ui/sonner'
+import { LanguageProvider } from '@/lib/i18n/LanguageContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,10 +16,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark" style={{ scrollBehavior: 'smooth' }}>
       <body className={`${inter.className} bg-[#0d0d1a] text-white`}>
-        <CartProvider>
-          {children}
-          <Toaster />
-        </CartProvider>
+        <LanguageProvider>
+          <CartProvider>
+            {children}
+            <Toaster />
+          </CartProvider>
+        </LanguageProvider>
       </body>
     </html>
   )

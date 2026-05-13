@@ -2,6 +2,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import type { Product } from '@/lib/types'
+import { FAKE_SHOP_PRODUCTS } from '@/lib/fakeData'
 
 export async function getProducts(category?: string) {
   const supabase = await createClient()
@@ -13,7 +14,14 @@ export async function getProducts(category?: string) {
   if (category && category !== 'all') query = query.eq('category', category)
   const { data, error } = await query
   if (error) throw error
-  return data as Product[]
+  const real = (data ?? []) as Product[]
+  if (real.length >= 5) return real
+  const fakeFiltered = category && category !== 'all'
+    ? FAKE_SHOP_PRODUCTS.filter(fp => fp.category === category)
+    : FAKE_SHOP_PRODUCTS
+  const realIds = new Set(real.map(r => r.id))
+  const merged = [...real, ...fakeFiltered.filter(fp => !realIds.has(fp.id))]
+  return merged
 }
 
 export async function getFarmerProducts() {
@@ -30,6 +38,11 @@ export async function getFarmerProducts() {
 }
 
 export async function getProduct(id: string) {
+  if (id.startsWith('fake-')) {
+    const fake = FAKE_SHOP_PRODUCTS.find(p => p.id === id)
+    if (!fake) throw new Error('Product not found')
+    return fake
+  }
   const supabase = await createClient()
   const { data, error } = await supabase
     .from('products')

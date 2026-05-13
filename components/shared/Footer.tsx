@@ -1,7 +1,10 @@
+'use client'
 import Link from 'next/link'
 import { Leaf } from 'lucide-react'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 export default function Footer() {
+  const { t } = useLanguage()
   return (
     <footer className="border-t border-white/10 bg-[#0d0d1a] py-12">
       <div className="max-w-7xl mx-auto px-4">
@@ -12,15 +15,13 @@ export default function Footer() {
             </div>
             <span className="font-black tracking-widest text-white">AGRILINK</span>
           </div>
-          <p className="text-gray-500 text-sm text-center">
-            Empowering farmers. Connecting communities. Fresh from the source.
-          </p>
+          <p className="text-gray-500 text-sm text-center">{t.footer.tagline}</p>
           <div className="flex gap-6 text-sm text-gray-500">
-            <Link href="/shop" className="hover:text-green-400 transition-colors">Shop</Link>
-            <Link href="/auth" className="hover:text-green-400 transition-colors">Join</Link>
+            <Link href="/shop" className="hover:text-green-400 transition-colors">{t.footer.shop}</Link>
+            <Link href="/auth" className="hover:text-green-400 transition-colors">{t.footer.join}</Link>
           </div>
         </div>
-        <p className="text-center text-gray-600 text-xs mt-8">© 2026 Agrilink. All rights reserved.</p>
+        <p className="text-center text-gray-600 text-xs mt-8">{t.footer.rights}</p>
       </div>
     </footer>
   )

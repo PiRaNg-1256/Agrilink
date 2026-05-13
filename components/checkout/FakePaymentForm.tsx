@@ -23,10 +23,10 @@ export default function FakePaymentForm() {
     }
     startTransition(async () => {
       try {
-        await createOrder(items, deliveryType, address)
+        const result = await createOrder(items, deliveryType, address)
         clearCart()
         toast.success('Order placed! Farmer will confirm soon.')
-        router.push('/orders')
+        router.push(result.demo ? '/orders?demo=1' : '/orders')
       } catch (err: any) {
         toast.error(err.message)
       }
