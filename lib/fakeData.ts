@@ -95,3 +95,23 @@ export const FAKE_SHOP_PRODUCTS: Product[] = [
   p('fake-23', 'fake-farmer-1', 'Dried Red Chilies', 'Byadagi variety dried chilies from Karnataka. Deep red colour, medium heat, rich flavour.', 200, 'kg', 25, 'other', 'https://images.unsplash.com/photo-1752007085497-e835495e2e25?w=400&auto=format&fit=crop', 'delivery', 'Pan India', null, f1),
   p('fake-24', 'fake-farmer-9', 'Coconut (Fresh)', 'Fresh Kerala coconuts. Tender water coconut and mature coconut both available.', 25, 'piece', 60, 'other', 'https://images.unsplash.com/photo-1551117281-9ebf84f8bec9?w=400&auto=format&fit=crop', 'both', 'Chennai, Coimbatore', 'Arumugam Farm, Thanjavur', f9),
 ]
+
+export type FakeFarmerWithCoords = {
+  id: string
+  full_name: string
+  location: string
+  lat: number
+  lng: number
+}
+
+export const FAKE_FARMER_COORDS: FakeFarmerWithCoords[] = [
+  { id: 'fake-farmer-1', full_name: 'Ravi Kumar',       location: 'Kolar, Karnataka',         lat: 13.1366, lng: 78.1298 },
+  { id: 'fake-farmer-2', full_name: 'Meena Devi',       location: 'Mysuru, Karnataka',         lat: 12.2958, lng: 76.6394 },
+  { id: 'fake-farmer-3', full_name: 'Venkat Reddy',     location: 'Guntur, Andhra Pradesh',    lat: 16.3067, lng: 80.4365 },
+  { id: 'fake-farmer-4', full_name: 'Lakshmi Sundaram', location: 'Ooty, Tamil Nadu',          lat: 11.4102, lng: 76.6950 },
+  { id: 'fake-farmer-5', full_name: 'Prakash Desai',    location: 'Solapur, Maharashtra',      lat: 17.6868, lng: 75.9071 },
+  { id: 'fake-farmer-6', full_name: 'Ramesh Sharma',    location: 'Barmer, Rajasthan',         lat: 25.7463, lng: 71.3930 },
+  { id: 'fake-farmer-7', full_name: 'Suresh Patil',     location: 'Ratnagiri, Maharashtra',    lat: 16.9944, lng: 73.2994 },
+  { id: 'fake-farmer-8', full_name: 'Gopalan Nair',     location: 'Thrissur, Kerala',          lat: 10.5276, lng: 76.2144 },
+  { id: 'fake-farmer-9', full_name: 'Arumugam S',       location: 'Thanjavur, Tamil Nadu',     lat: 10.7870, lng: 79.1378 },
+]

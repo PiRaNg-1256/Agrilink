@@ -23,10 +23,15 @@ export default async function DashboardPage() {
               <span className="text-xs font-bold tracking-[0.3em] text-green-400 uppercase">Farmer</span>
               <h1 className="text-3xl font-black text-white mt-1">My Dashboard</h1>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-3 flex-wrap">
               <Link href="/dashboard/orders">
                 <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
                   View Orders {pending > 0 && <span className="ml-2 bg-yellow-500 text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">{pending}</span>}
+                </Button>
+              </Link>
+              <Link href="/dashboard/location">
+                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                  📍 Set Location
                 </Button>
               </Link>
               <Link href="/dashboard/add-product">
