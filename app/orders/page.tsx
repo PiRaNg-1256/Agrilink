@@ -91,11 +91,9 @@ function OrdersContent() {
                       <RefreshCw className="w-3 h-3" /> {t.orders.reorder}
                     </button>
                   )}
-                  {order.id !== 'demo-order-001' && (
-                    <a href={`/orders/${order.id}`} className="text-blue-400 text-sm hover:text-blue-300 transition-colors">
-                      View Details →
-                    </a>
-                  )}
+                  <a href={`/orders/${order.id}`} className="text-blue-400 text-sm hover:text-blue-300 transition-colors">
+                    View Details →
+                  </a>
                 </div>
                 <span className="text-green-400 font-bold">₹{order.total_price.toFixed(2)}</span>
               </div>
