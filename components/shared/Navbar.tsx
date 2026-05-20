@@ -44,6 +44,9 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-6">
           <Link href="/shop" className="text-sm text-gray-300 hover:text-green-400 transition-colors">{t.nav.shop}</Link>
           <Link href="/map" className="text-sm text-gray-300 hover:text-green-400 transition-colors">Map</Link>
+          {profile && (
+            <Link href="/support" className="text-sm text-gray-300 hover:text-green-400 transition-colors">Support</Link>
+          )}
           {profile?.role === 'farmer' && (
             <Link href="/dashboard" className="text-sm text-gray-300 hover:text-green-400 transition-colors">{t.nav.dashboard}</Link>
           )}
