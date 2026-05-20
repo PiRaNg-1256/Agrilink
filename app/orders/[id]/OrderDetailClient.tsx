@@ -2,12 +2,13 @@
 import dynamic from 'next/dynamic'
 import { Marker, Popup } from 'react-leaflet'
 import Link from 'next/link'
+import DisputeButton from '@/components/disputes/DisputeButton'
 
 const DynamicMap = dynamic(() => import('@/components/map/BaseMap'), { ssr: false })
 
 const STATUS_STEPS = ['pending', 'confirmed', 'shipped', 'delivered'] as const
 
-export default function OrderDetailClient({ order }: { order: any }) {
+export default function OrderDetailClient({ order, existingDispute }: { order: any, existingDispute: any }) {
   const currentStep = STATUS_STEPS.indexOf(order.status)
   const farmer = order.farmer
   const showMap = order.delivery_type === 'delivery' && farmer?.lat && farmer?.lng
@@ -89,6 +90,13 @@ export default function OrderDetailClient({ order }: { order: any }) {
           )}
           <p className="text-gray-400 text-sm mt-1">Farmer: <span className="text-white">{farmer?.full_name}</span></p>
         </div>
+
+        {order.status !== 'pending' && (
+          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 mt-6">
+            <h2 className="text-white font-semibold mb-3">Issue with this order?</h2>
+            <DisputeButton orderId={order.id} existingDispute={existingDispute} />
+          </div>
+        )}
       </div>
     </main>
   )

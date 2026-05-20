@@ -47,6 +47,9 @@ export default function Navbar() {
           {profile && (
             <Link href="/support" className="text-sm text-gray-300 hover:text-green-400 transition-colors">Support</Link>
           )}
+          {profile?.role === 'consumer' && (
+            <Link href="/orders" className="text-sm text-gray-300 hover:text-green-400 transition-colors">Orders</Link>
+          )}
           {profile?.role === 'farmer' && (
             <Link href="/dashboard" className="text-sm text-gray-300 hover:text-green-400 transition-colors">{t.nav.dashboard}</Link>
           )}

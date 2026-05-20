@@ -70,7 +70,7 @@ export async function getFarmerOrders() {
   if (!user) throw new Error('Unauthorized')
   const { data, error } = await supabase
     .from('orders')
-    .select('*, order_items(*, products(name, unit)), profiles!consumer_id(full_name, phone)')
+    .select('*, order_items(*, products(name, unit)), profiles!consumer_id(full_name, phone), disputes(id, status, reason, farmer_response)')
     .eq('farmer_id', user.id)
     .order('created_at', { ascending: false })
   if (error) throw error

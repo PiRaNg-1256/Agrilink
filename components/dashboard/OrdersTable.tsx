@@ -1,6 +1,7 @@
 'use client'
 import { useTransition } from 'react'
 import { updateOrderStatus } from '@/lib/actions/orders'
+import FarmerDisputeResponder from '@/components/disputes/FarmerDisputeResponder'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { toast } from 'sonner'
 import type { Order, OrderStatus } from '@/lib/types'
@@ -60,6 +61,12 @@ export default function OrdersTable({ orders }: { orders: Order[] }) {
             <div className="flex justify-end pt-3 border-t border-white/10 mt-2">
               <span className="text-green-400 font-bold">₹{order.total_price.toFixed(2)}</span>
             </div>
+            {/* Show dispute if one exists on this order */}
+            {(() => {
+              const disputes = (order as any).disputes
+              const dispute = Array.isArray(disputes) ? disputes[0] : disputes
+              return dispute ? <FarmerDisputeResponder dispute={dispute} /> : null
+            })()}
           </div>
         )
       })}

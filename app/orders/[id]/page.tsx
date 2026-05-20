@@ -26,10 +26,16 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
 
   if (!order) notFound()
 
+  const { data: existingDispute } = await supabase
+    .from('disputes')
+    .select('id, status, reason')
+    .eq('order_id', id)
+    .maybeSingle()
+
   return (
     <>
       <Navbar />
-      <OrderDetailClient order={order} />
+      <OrderDetailClient order={order} existingDispute={existingDispute ?? null} />
       <Footer />
     </>
   )
