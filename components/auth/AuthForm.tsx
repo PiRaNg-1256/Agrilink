@@ -31,13 +31,13 @@ export default function AuthForm() {
         // Auto sign in after register
         const { data, error: signInError } = await supabase.auth.signInWithPassword({ email, password })
         if (signInError) throw signInError
-        const { data: profile } = await supabase.from('profiles').select('role').eq('id', data.user.id).single()
-        window.location.href = profile?.role === 'farmer' ? '/dashboard' : '/shop'
+        const { data: profile } = await supabase.from('profiles').select('role, is_admin').eq('id', data.user.id).single()
+        window.location.href = profile?.is_admin ? '/admin' : profile?.role === 'farmer' ? '/dashboard' : '/shop'
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({ email, password })
         if (error) throw error
-        const { data: profile } = await supabase.from('profiles').select('role').eq('id', data.user.id).single()
-        window.location.href = profile?.role === 'farmer' ? '/dashboard' : '/shop'
+        const { data: profile } = await supabase.from('profiles').select('role, is_admin').eq('id', data.user.id).single()
+        window.location.href = profile?.is_admin ? '/admin' : profile?.role === 'farmer' ? '/dashboard' : '/shop'
       }
     } catch (err: any) {
       toast.error(err.message)
