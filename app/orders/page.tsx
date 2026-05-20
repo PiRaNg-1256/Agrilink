@@ -45,7 +45,7 @@ function OrdersContent() {
     getConsumerOrders().then(setOrders).catch(() => setOrders([])).finally(() => setLoading(false))
   }, [])
 
-  const displayOrders = isDemo ? [DEMO_ORDER, ...orders] : orders
+  const displayOrders = orders.length > 0 ? orders : [DEMO_ORDER]
 
   return (
     <div className="max-w-4xl mx-auto">
