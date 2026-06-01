@@ -3,10 +3,10 @@ import Link from 'next/link'
 import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 const SEASONAL = [
-  { name: 'Alphonso Mangoes', nameHi: 'अल्फांसो आम', nameKn: 'ಆಮ್ರ', season: 'Apr – Jun', badge: '🔥 Peak Season', image: 'https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=300&auto=format&fit=crop', color: 'from-yellow-900/40 to-orange-900/20' },
-  { name: 'Fresh Strawberries', nameHi: 'स्ट्रॉबेरी', nameKn: 'ಸ್ಟ್ರಾಬೆರಿ', season: 'Dec – Feb', badge: '❄️ Winter Special', image: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=300&auto=format&fit=crop', color: 'from-red-900/40 to-pink-900/20' },
-  { name: 'Sweet Corn', nameHi: 'मकई', nameKn: 'ಜೋಳ', season: 'Jun – Aug', badge: '🌧️ Monsoon Fresh', image: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=300&auto=format&fit=crop', color: 'from-yellow-900/30 to-green-900/20' },
-  { name: 'Pomegranate', nameHi: 'अनार', nameKn: 'ದಾಳಿಂಬೆ', season: 'Aug – Feb', badge: '✨ In Season Now', image: 'https://images.unsplash.com/photo-1615485500704-8e990f9900f1?w=300&auto=format&fit=crop', color: 'from-red-900/40 to-purple-900/20' },
+  { name: 'Alphonso Mangoes', nameHi: 'अल्फांसो आम', nameKn: 'ಆಮ್ರ', season: 'Apr – Jun', badgeKey: 'peakSeason' as const, image: 'https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=300&auto=format&fit=crop', color: 'from-yellow-900/40 to-orange-900/20' },
+  { name: 'Fresh Strawberries', nameHi: 'स्ट्रॉबेरी', nameKn: 'ಸ್ಟ್ರಾಬೆರಿ', season: 'Dec – Feb', badgeKey: 'winterSpecial' as const, image: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=300&auto=format&fit=crop', color: 'from-red-900/40 to-pink-900/20' },
+  { name: 'Sweet Corn', nameHi: 'मकई', nameKn: 'ಜೋಳ', season: 'Jun – Aug', badgeKey: 'monsoonFresh' as const, image: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=300&auto=format&fit=crop', color: 'from-yellow-900/30 to-green-900/20' },
+  { name: 'Pomegranate', nameHi: 'अनार', nameKn: 'ದಾಳಿಂಬೆ', season: 'Aug – Feb', badgeKey: 'inSeasonNow' as const, image: 'https://images.unsplash.com/photo-1615485500704-8e990f9900f1?w=300&auto=format&fit=crop', color: 'from-red-900/40 to-purple-900/20' },
 ]
 
 export default function SeasonalHighlights() {
@@ -31,9 +31,9 @@ export default function SeasonalHighlights() {
                   <img src={s.image} alt={s.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-4">
-                  <span className="text-xs font-bold text-yellow-400">{s.badge}</span>
+                  <span className="text-xs font-bold text-yellow-400">{t.seasonalHighlights[s.badgeKey]}</span>
                   <h3 className="text-white font-bold mt-1">{getName(s)}</h3>
-                  <p className="text-gray-500 text-xs mt-1">Season: {s.season}</p>
+                  <p className="text-gray-500 text-xs mt-1">{t.seasonalHighlights.season}: {s.season}</p>
                 </div>
               </div>
             </Link>

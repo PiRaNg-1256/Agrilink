@@ -12,7 +12,8 @@ export const translations = {
     orders: { title: 'My Orders', noOrders: 'No orders yet.', reorder: 'Reorder', status: { pending: 'Pending', confirmed: 'Confirmed', shipped: 'Shipped', delivered: 'Delivered' } },
     auth: { signIn: 'Sign In', register: 'Register', email: 'Email', password: 'Password', fullName: 'Full Name', iAmA: 'I am a...', consumer: 'Consumer', farmer: 'Farmer', createAccount: 'Create Account', loading: 'Loading...' },
     footer: { tagline: 'Empowering farmers. Connecting communities. Fresh from the source.', shop: 'Shop', join: 'Join', rights: '© 2026 Agrilink. All rights reserved.' },
-    seasonalHighlights: { label: "Season's Best", title: "What's fresh", titleGreen: 'right now.' },
+    seasonalHighlights: { label: "Season's Best", title: "What's fresh", titleGreen: 'right now.', season: 'Season', peakSeason: '🔥 Peak Season', winterSpecial: '❄️ Winter Special', monsoonFresh: '🌧️ Monsoon Fresh', inSeasonNow: '✨ In Season Now' },
+    featuredProducts: { label: 'Fresh Listings', title: 'Straight from the farm.', viewAll: 'View All' },
     cropPrices: { label: 'Live Market', title: "Today's Crop Prices", subtitle: 'Live MSP + mandi rates updated every 30 seconds', lastUpdated: 'Last updated' },
     support: {
       title: 'Support',
@@ -80,7 +81,8 @@ export const translations = {
     orders: { title: 'मेरे ऑर्डर', noOrders: 'अभी तक कोई ऑर्डर नहीं।', reorder: 'फिर से ऑर्डर करें', status: { pending: 'लंबित', confirmed: 'पुष्टि हुई', shipped: 'भेजा गया', delivered: 'डिलीवर हुआ' } },
     auth: { signIn: 'साइन इन', register: 'पंजीकरण', email: 'ईमेल', password: 'पासवर्ड', fullName: 'पूरा नाम', iAmA: 'मैं हूँ...', consumer: 'उपभोक्ता', farmer: 'किसान', createAccount: 'खाता बनाएँ', loading: 'लोड हो रहा है...' },
     footer: { tagline: 'किसानों को सशक्त करना। समुदायों को जोड़ना। सीधे स्रोत से ताज़ा।', shop: 'दुकान', join: 'जुड़ें', rights: '© 2026 एग्रीलिंक। सर्वाधिकार सुरक्षित।' },
-    seasonalHighlights: { label: 'मौसम का सर्वश्रेष्ठ', title: 'अभी क्या ताज़ा है', titleGreen: 'इस मौसम में।' },
+    seasonalHighlights: { label: 'मौसम का सर्वश्रेष्ठ', title: 'अभी क्या ताज़ा है', titleGreen: 'इस मौसम में।', season: 'मौसम', peakSeason: '🔥 चरम सीज़न', winterSpecial: '❄️ सर्दियों की खास', monsoonFresh: '🌧️ मानसून ताज़ा', inSeasonNow: '✨ अभी मौसम में' },
+    featuredProducts: { label: 'ताज़ी लिस्टिंग', title: 'सीधे खेत से।', viewAll: 'सब देखें' },
     cropPrices: { label: 'लाइव बाज़ार', title: 'आज के फसल मूल्य', subtitle: 'हर 30 सेकंड में अपडेट होने वाली MSP + मंडी दरें', lastUpdated: 'अंतिम अपडेट' },
     support: {
       title: 'सहायता',
@@ -148,7 +150,8 @@ export const translations = {
     orders: { title: 'ನನ್ನ ಆರ್ಡರ್‌ಗಳು', noOrders: 'ಇನ್ನೂ ಯಾವುದೇ ಆರ್ಡರ್ ಇಲ್ಲ.', reorder: 'ಮತ್ತೆ ಆರ್ಡರ್ ಮಾಡಿ', status: { pending: 'ಬಾಕಿ', confirmed: 'ದೃಢಪಡಿಸಲಾಗಿದೆ', shipped: 'ಕಳುಹಿಸಲಾಗಿದೆ', delivered: 'ವಿತರಿಸಲಾಗಿದೆ' } },
     auth: { signIn: 'ಸೈನ್ ಇನ್', register: 'ನೋಂದಣಿ', email: 'ಇಮೇಲ್', password: 'ಪಾಸ್‌ವರ್ಡ್', fullName: 'ಪೂರ್ಣ ಹೆಸರು', iAmA: 'ನಾನು...', consumer: 'ಗ್ರಾಹಕ', farmer: 'ರೈತ', createAccount: 'ಖಾತೆ ರಚಿಸಿ', loading: 'ಲೋಡ್ ಆಗುತ್ತಿದೆ...' },
     footer: { tagline: 'ರೈತರನ್ನು ಸಶಕ್ತಗೊಳಿಸುವುದು. ಸಮುದಾಯಗಳನ್ನು ಸಂಪರ್ಕಿಸುವುದು. ನೇರ ಮೂಲದಿಂದ ತಾಜಾ.', shop: 'ಅಂಗಡಿ', join: 'ಸೇರಿ', rights: '© 2026 ಎಗ್ರಿಲಿಂಕ್. ಎಲ್ಲ ಹಕ್ಕುಗಳು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.' },
-    seasonalHighlights: { label: 'ಋತುವಿನ ಅತ್ಯುತ್ತಮ', title: 'ಈಗ ಏನು ತಾಜಾ', titleGreen: 'ಈ ಋತುವಿನಲ್ಲಿ.' },
+    seasonalHighlights: { label: 'ಋತುವಿನ ಅತ್ಯುತ್ತಮ', title: 'ಈಗ ಏನು ತಾಜಾ', titleGreen: 'ಈ ಋತುವಿನಲ್ಲಿ.', season: 'ಋತು', peakSeason: '🔥 ಉತ್ತುಂಗ ಸೀಸನ್', winterSpecial: '❄️ ಚಳಿಗಾಲದ ವಿಶೇಷ', monsoonFresh: '🌧️ ಮಳೆಗಾಲದ ತಾಜಾ', inSeasonNow: '✨ ಈಗ ಸೀಸನ್‌ನಲ್ಲಿ' },
+    featuredProducts: { label: 'ತಾಜಾ ಪಟ್ಟಿ', title: 'ನೇರ ಹೊಲದಿಂದ.', viewAll: 'ಎಲ್ಲ ನೋಡಿ' },
     cropPrices: { label: 'ಲೈವ್ ಮಾರುಕಟ್ಟೆ', title: 'ಇಂದಿನ ಬೆಳೆ ಬೆಲೆ', subtitle: 'ಪ್ರತಿ 30 ಸೆಕೆಂಡ್‌ಗೆ ನವೀಕರಿಸಲಾಗುತ್ತದೆ MSP + ಮಂಡಿ ದರಗಳು', lastUpdated: 'ಕೊನೆಯ ನವೀಕರಣ' },
     support: {
       title: 'ಸಹಾಯ',

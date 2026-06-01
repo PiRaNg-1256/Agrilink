@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { Product } from '@/lib/types'
+import FeaturedProductsHeader from './FeaturedProductsHeader'
 
 const FAKE_PRODUCTS = [
   { id: 'fake-1', name: 'Fresh Tomatoes', category: 'vegetables', price: 35, unit: 'kg', description: 'Sun-ripened tomatoes grown without pesticides in Karnataka highlands.', image_url: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&auto=format&fit=crop', farmer_location: 'Kolar, Karnataka' },
@@ -58,15 +58,7 @@ export default async function FeaturedProducts() {
   return (
     <section className="py-24 px-4 bg-white/[0.02]">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-end justify-between mb-12">
-          <div>
-            <span className="text-xs font-bold tracking-[0.3em] text-green-400 uppercase">Fresh Listings</span>
-            <h2 className="text-4xl font-black text-white mt-2">Straight from the farm.</h2>
-          </div>
-          <Link href="/shop">
-            <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">View All</Button>
-          </Link>
-        </div>
+        <FeaturedProductsHeader />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {showFake
