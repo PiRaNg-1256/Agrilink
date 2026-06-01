@@ -23,6 +23,7 @@ export default function LocationEditorClient() {
   const [lat, setLat] = useState<number | null>(null)
   const [lng, setLng] = useState<number | null>(null)
   const [radius, setRadius] = useState(20)
+  const [pincode, setPincode] = useState('')
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const supabase = createClient()
@@ -31,9 +32,10 @@ export default function LocationEditorClient() {
     async function load() {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
-      const { data: p } = await supabase.from('profiles').select('lat, lng').eq('id', user.id).single()
+      const { data: p } = await supabase.from('profiles').select('lat, lng, pincode').eq('id', user.id).single()
       if (p?.lat) setLat(p.lat)
       if (p?.lng) setLng(p.lng)
+      if (p?.pincode) setPincode(p.pincode)
       const { data: z } = await supabase.from('delivery_zones').select('radius_km').eq('farmer_id', user.id).single()
       if (z?.radius_km) setRadius(z.radius_km)
     }
@@ -45,7 +47,7 @@ export default function LocationEditorClient() {
     setSaving(true)
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
-    await supabase.from('profiles').update({ lat, lng }).eq('id', user.id)
+    await supabase.from('profiles').update({ lat, lng, pincode }).eq('id', user.id)
     await supabase.from('delivery_zones').upsert(
       { farmer_id: user.id, center_lat: lat, center_lng: lng, radius_km: radius },
       { onConflict: 'farmer_id' }
@@ -77,6 +79,17 @@ export default function LocationEditorClient() {
       </MapContainer>
 
       <div className="mt-4 flex flex-wrap items-center gap-4">
+        <div className="flex items-center gap-2">
+          <label className="text-gray-300 text-sm">Pincode:</label>
+          <input
+            type="text"
+            value={pincode}
+            maxLength={6}
+            onChange={(e) => setPincode(e.target.value.replace(/\D/g, ''))}
+            placeholder="e.g. 560001"
+            className="bg-gray-800 text-white rounded px-3 py-1 w-28 border border-gray-600"
+          />
+        </div>
         <div className="flex items-center gap-2">
           <label className="text-gray-300 text-sm">Delivery radius (km):</label>
           <input

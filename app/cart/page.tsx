@@ -5,17 +5,19 @@ import { useCart } from '@/components/cart/CartProvider'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Trash2 } from 'lucide-react'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, total } = useCart()
+  const { t } = useLanguage()
 
   if (items.length === 0) return (
     <main><Navbar />
       <div className="pt-32 pb-20 text-center px-4">
         <p className="text-5xl mb-4">🛒</p>
-        <h2 className="text-2xl font-bold text-white mb-2">Your cart is empty</h2>
+        <h2 className="text-2xl font-bold text-white mb-2">{t.cart.empty}</h2>
         <p className="text-gray-500 mb-8">Add some fresh produce to get started.</p>
-        <Link href="/shop"><Button className="bg-green-500 hover:bg-green-400 text-black font-bold">Browse Products</Button></Link>
+        <Link href="/shop"><Button className="bg-green-500 hover:bg-green-400 text-black font-bold">{t.cart.browseProducts}</Button></Link>
       </div>
       <Footer />
     </main>
@@ -26,7 +28,7 @@ export default function CartPage() {
       <Navbar />
       <div className="pt-24 pb-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl font-black text-white mb-8">Your Cart</h1>
+          <h1 className="text-3xl font-black text-white mb-8">{t.cart.title}</h1>
           <div className="space-y-4 mb-8">
             {items.map(item => (
               <div key={item.product.id} className="flex items-center gap-4 p-4 rounded-2xl border border-white/10 bg-white/5">
@@ -51,11 +53,11 @@ export default function CartPage() {
           </div>
           <div className="flex items-center justify-between p-6 rounded-2xl border border-white/10 bg-white/5">
             <div>
-              <p className="text-gray-400 text-sm">Total</p>
+              <p className="text-gray-400 text-sm">{t.cart.total}</p>
               <p className="text-3xl font-black text-white">₹{total.toFixed(2)}</p>
             </div>
             <Link href="/checkout">
-              <Button size="lg" className="bg-green-500 hover:bg-green-400 text-black font-bold px-8">Proceed to Checkout</Button>
+              <Button size="lg" className="bg-green-500 hover:bg-green-400 text-black font-bold px-8">{t.cart.checkout}</Button>
             </Link>
           </div>
         </div>

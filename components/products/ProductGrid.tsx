@@ -10,6 +10,7 @@ export default function ProductGrid({ products }: { products: Product[] }) {
   const [deliveryFilter, setDeliveryFilter] = useState('all')
   const [search, setSearch] = useState('')
   const [maxPrice, setMaxPrice] = useState(2000)
+  const [pincodeFilter, setPincodeFilter] = useState('')
 
   const categories = [
     { label: t.shop.categories.all, value: 'all' },
@@ -37,11 +38,25 @@ export default function ProductGrid({ products }: { products: Product[] }) {
       (p as any).profiles?.full_name?.toLowerCase().includes(search.toLowerCase()) ||
       (p as any).profiles?.location?.toLowerCase().includes(search.toLowerCase())
     const priceMatch = p.price <= maxPrice
-    return catMatch && delMatch && searchMatch && priceMatch
+    const pincodeMatch = pincodeFilter === '' || (p as any).profiles?.pincode?.includes(pincodeFilter)
+    return catMatch && delMatch && searchMatch && priceMatch && pincodeMatch
   })
 
   return (
     <div>
+      <div className="mb-4 flex items-center gap-2">
+        <input
+          type="text"
+          value={pincodeFilter}
+          onChange={e => setPincodeFilter(e.target.value.replace(/\D/g, ''))}
+          maxLength={6}
+          placeholder="Filter by pincode..."
+          className="bg-gray-800 text-white rounded-lg px-4 py-2 text-sm border border-gray-700 focus:border-green-500 focus:outline-none w-48"
+        />
+        {pincodeFilter && (
+          <button onClick={() => setPincodeFilter('')} className="text-gray-400 hover:text-white text-sm">Clear</button>
+        )}
+      </div>
       <div className="flex gap-3 mb-4 flex-wrap">
         <input
           type="text"

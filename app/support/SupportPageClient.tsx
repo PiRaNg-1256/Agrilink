@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createTicket } from '@/lib/actions/support'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 interface Props {
   tickets: any[]
@@ -18,6 +19,7 @@ const STATUS_BADGE: Record<string, string> = {
 
 export default function SupportPageClient({ tickets }: Props) {
   const router = useRouter()
+  const { t } = useLanguage()
   const [showForm, setShowForm] = useState(false)
   const [subject, setSubject] = useState('')
   const [category, setCategory] = useState('order')
@@ -56,65 +58,65 @@ export default function SupportPageClient({ tickets }: Props) {
       <div className="max-w-3xl mx-auto px-4 py-10">
         {/* Header */}
         <div className="flex items-center justify-between mb-3">
-          <h1 className="text-3xl font-bold text-white">Support</h1>
+          <h1 className="text-3xl font-bold text-white">{t.support.title}</h1>
           <button
             onClick={() => setShowForm((v) => !v)}
             className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors"
           >
-            {showForm ? 'Cancel' : 'New Ticket'}
+            {showForm ? t.support.cancel : t.support.newTicket}
           </button>
         </div>
 
         {/* FAQ link */}
         <p className="mb-8 text-gray-400 text-sm">
           <Link href="/support/faq" className="text-green-400 hover:text-green-300 transition-colors">
-            Browse our FAQ →
+            {t.support.faqLink}
           </Link>
         </p>
 
         {/* New Ticket Form */}
         {showForm && (
           <div className="bg-[#12122a] border border-white/10 rounded-xl p-6 mb-8">
-            <h2 className="text-lg font-semibold text-white mb-5">Open a New Ticket</h2>
+            <h2 className="text-lg font-semibold text-white mb-5">{t.support.openNewTicket}</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Subject */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1">Subject</label>
+                <label className="block text-sm font-medium text-gray-300 mb-1">{t.support.subject}</label>
                 <input
                   type="text"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   required
-                  placeholder="Briefly describe your issue"
+                  placeholder={t.support.subjectPlaceholder}
                   className="w-full bg-[#0d0d1a] border border-white/10 rounded-lg px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500/50"
                 />
               </div>
 
               {/* Category */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1">Category</label>
+                <label className="block text-sm font-medium text-gray-300 mb-1">{t.support.category}</label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   className="w-full bg-[#0d0d1a] border border-white/10 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500/50"
                 >
-                  <option value="order">Order</option>
-                  <option value="product">Product</option>
-                  <option value="account">Account</option>
-                  <option value="delivery">Delivery</option>
-                  <option value="other">Other</option>
+                  <option value="order">{t.support.categories.order}</option>
+                  <option value="product">{t.support.categories.product}</option>
+                  <option value="account">{t.support.categories.account}</option>
+                  <option value="delivery">{t.support.categories.delivery}</option>
+                  <option value="other">{t.support.categories.other}</option>
                 </select>
               </div>
 
               {/* Message */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                <label className="block text-sm font-medium text-gray-300 mb-1">{t.support.message}</label>
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required
                   rows={4}
-                  placeholder="Describe your issue in detail..."
+                  placeholder={t.support.messagePlaceholder}
                   className="w-full bg-[#0d0d1a] border border-white/10 rounded-lg px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500/50 resize-none"
                 />
               </div>
@@ -131,14 +133,14 @@ export default function SupportPageClient({ tickets }: Props) {
                   disabled={loading}
                   className="bg-green-500 hover:bg-green-600 disabled:opacity-50 text-white font-semibold px-5 py-2 rounded-lg transition-colors"
                 >
-                  {loading ? 'Opening…' : 'Open Ticket'}
+                  {loading ? t.support.opening : t.support.openTicket}
                 </button>
                 <button
                   type="button"
                   onClick={handleCancel}
                   className="bg-white/10 hover:bg-white/20 text-white font-semibold px-5 py-2 rounded-lg transition-colors"
                 >
-                  Cancel
+                  {t.support.cancel}
                 </button>
               </div>
             </form>
@@ -147,10 +149,10 @@ export default function SupportPageClient({ tickets }: Props) {
 
         {/* Ticket List */}
         <div>
-          <h2 className="text-lg font-semibold text-white mb-4">Your Tickets</h2>
+          <h2 className="text-lg font-semibold text-white mb-4">{t.support.yourTickets}</h2>
           {tickets.length === 0 ? (
             <p className="text-gray-400 text-sm">
-              No tickets yet. Need help? Open a ticket above.
+              {t.support.noTickets}
             </p>
           ) : (
             <ul className="space-y-3">

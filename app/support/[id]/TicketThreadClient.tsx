@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { sendMessage, closeTicket } from '@/lib/actions/support'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 interface Props {
   ticket: any
@@ -33,6 +34,7 @@ function StatusBadge({ status }: { status: string }) {
 
 export default function TicketThreadClient({ ticket, messages, userId }: Props) {
   const router = useRouter()
+  const { t } = useLanguage()
   const [reply, setReply] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -69,7 +71,7 @@ export default function TicketThreadClient({ ticket, messages, userId }: Props) 
           href="/support"
           className="inline-flex items-center text-sm text-gray-400 hover:text-white mb-6 transition-colors"
         >
-          ← Back to Support
+          {t.support.backToSupport}
         </Link>
 
         {/* Header */}
@@ -94,7 +96,7 @@ export default function TicketThreadClient({ ticket, messages, userId }: Props) 
               >
                 <div className={`max-w-[75%] ${isAdmin ? 'items-start' : 'items-end'} flex flex-col gap-1`}>
                   <span className="text-xs text-gray-500 px-1">
-                    {isAdmin ? 'Support Team' : 'You'}
+                    {isAdmin ? t.support.supportTeam : t.support.you}
                   </span>
                   <div
                     className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${
@@ -120,7 +122,7 @@ export default function TicketThreadClient({ ticket, messages, userId }: Props) 
             <textarea
               value={reply}
               onChange={(e) => setReply(e.target.value)}
-              placeholder="Type your reply..."
+              placeholder={t.support.typeReply}
               rows={4}
               className="w-full bg-[#0d0d1a] border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 resize-none focus:outline-none focus:border-[#22c55e] transition-colors"
             />
@@ -131,7 +133,7 @@ export default function TicketThreadClient({ ticket, messages, userId }: Props) 
                 disabled={loading || !reply.trim()}
                 className="px-5 py-2 bg-[#22c55e] hover:bg-[#16a34a] disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-semibold rounded-lg transition-colors"
               >
-                {loading ? 'Sending...' : 'Send'}
+                {loading ? t.support.sending : t.support.send}
               </button>
             </div>
           </div>
@@ -145,7 +147,7 @@ export default function TicketThreadClient({ ticket, messages, userId }: Props) 
               disabled={loading}
               className="px-5 py-2 bg-transparent border border-[#facc15] text-[#facc15] hover:bg-[#facc15]/10 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-semibold rounded-lg transition-colors"
             >
-              {loading ? 'Processing...' : 'Mark Resolved'}
+              {loading ? t.support.processing : t.support.markResolved}
             </button>
           </div>
         )}

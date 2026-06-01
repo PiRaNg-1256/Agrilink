@@ -66,6 +66,9 @@ export default function ProductCard({ product }: { product: Product }) {
               {farmerProfile.full_name} · {farmerProfile.location}
             </p>
           )}
+          {(product as any).profiles?.pincode && (
+            <span className="text-xs text-gray-500">📍 {(product as any).profiles.pincode}</span>
+          )}
           <div className="flex items-center justify-between">
             <span className="text-green-400 font-bold text-lg">
               ₹{p.price}<span className="text-gray-500 text-sm font-normal">/{p.unit}</span>

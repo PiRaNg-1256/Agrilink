@@ -2,48 +2,20 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-
-interface FAQItem {
-  id: number;
-  question: string;
-  answer: string;
-}
-
-const faqItems: FAQItem[] = [
-  {
-    id: 1,
-    question: 'How do I place an order?',
-    answer: 'Browse products in the Shop, add items to your cart, then proceed to Checkout. Fill in your delivery details and confirm your order.',
-  },
-  {
-    id: 2,
-    question: 'How do I track my order?',
-    answer: 'Go to Orders in your account to see real-time status updates from the farmer. You can also view delivery details for each order.',
-  },
-  {
-    id: 3,
-    question: 'How do I contact a farmer?',
-    answer: 'Visit the farmer\'s profile page from any product listing. You can view their contact information and farm location on the map.',
-  },
-  {
-    id: 4,
-    question: 'How do I file a dispute?',
-    answer: 'On your order detail page, click "File Dispute" and describe the issue. Our team reviews all disputes within 48 hours.',
-  },
-  {
-    id: 5,
-    question: 'How do I become a farmer on Agrilink?',
-    answer: 'Sign up and select "Farmer" as your role. Complete your profile, add your farm location, and start listing your produce.',
-  },
-  {
-    id: 6,
-    question: 'What payment methods are accepted?',
-    answer: 'We currently accept UPI and card payments at checkout. All transactions are secured.',
-  },
-];
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const { t } = useLanguage();
+
+  const faqItems = [
+    { id: 1, question: t.support.faq.q1, answer: t.support.faq.a1 },
+    { id: 2, question: t.support.faq.q2, answer: t.support.faq.a2 },
+    { id: 3, question: t.support.faq.q3, answer: t.support.faq.a3 },
+    { id: 4, question: t.support.faq.q4, answer: t.support.faq.a4 },
+    { id: 5, question: t.support.faq.q5, answer: t.support.faq.a5 },
+    { id: 6, question: t.support.faq.q6, answer: t.support.faq.a6 },
+  ];
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -57,11 +29,11 @@ export default function FAQPage() {
           href="/support"
           className="inline-flex items-center text-[#22c55e] hover:text-[#16a34a] mb-8 transition-colors"
         >
-          ← Back to Support
+          {t.support.backToSupport}
         </Link>
 
         {/* Page Title */}
-        <h1 className="text-4xl font-bold mb-12 text-white">Frequently Asked Questions</h1>
+        <h1 className="text-4xl font-bold mb-12 text-white">{t.support.faq.title}</h1>
 
         {/* FAQ Items */}
         <div className="space-y-0">

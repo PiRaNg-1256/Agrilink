@@ -8,7 +8,7 @@ export async function getProducts(category?: string) {
   const supabase = await createClient()
   let query = supabase
     .from('products')
-    .select('*, profiles(full_name, location, id)')
+    .select('*, profiles(full_name, location, id, pincode)')
     .eq('is_available', true)
     .order('created_at', { ascending: false })
   if (category && category !== 'all') query = query.eq('category', category)

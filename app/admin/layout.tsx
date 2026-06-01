@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import AdminSignOut from './AdminSignOut'
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient()
@@ -19,7 +20,6 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     { href: '/admin', label: 'Dashboard' },
     { href: '/admin/users', label: 'Users' },
     { href: '/admin/orders', label: 'Orders' },
-    { href: '/admin/disputes', label: 'Disputes' },
     { href: '/admin/support', label: 'Support' },
   ]
 
@@ -32,7 +32,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             {l.label}
           </Link>
         ))}
-        <span className="ml-auto text-gray-500 text-sm">{profile.full_name}</span>
+        <div className="ml-auto flex items-center gap-4">
+          <span className="text-gray-500 text-sm">{profile.full_name}</span>
+          <AdminSignOut />
+        </div>
       </nav>
       <div className="p-6">{children}</div>
     </div>
