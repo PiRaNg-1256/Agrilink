@@ -45,12 +45,12 @@ export default function Navbar() {
           {profile?.role !== 'farmer' && (
             <Link href="/shop" className="text-sm text-gray-300 hover:text-green-400 transition-colors">{t.nav.shop}</Link>
           )}
-          <Link href="/map" className="text-sm text-gray-300 hover:text-green-400 transition-colors">Map</Link>
+          <Link href="/map" className="text-sm text-gray-300 hover:text-green-400 transition-colors">{t.nav.map}</Link>
           {profile && (
-            <Link href="/support" className="text-sm text-gray-300 hover:text-green-400 transition-colors">Support</Link>
+            <Link href="/support" className="text-sm text-gray-300 hover:text-green-400 transition-colors">{t.nav.support}</Link>
           )}
           {profile?.role === 'consumer' && (
-            <Link href="/orders" className="text-sm text-gray-300 hover:text-green-400 transition-colors">Orders</Link>
+            <Link href="/orders" className="text-sm text-gray-300 hover:text-green-400 transition-colors">{t.nav.orders}</Link>
           )}
           {profile?.role === 'farmer' && (
             <Link href="/dashboard" className="text-sm text-gray-300 hover:text-green-400 transition-colors">{t.nav.dashboard}</Link>

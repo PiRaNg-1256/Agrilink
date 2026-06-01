@@ -2,7 +2,7 @@ export type Locale = 'en' | 'hi' | 'kn'
 
 export const translations = {
   en: {
-    nav: { shop: 'Shop', dashboard: 'Dashboard', signOut: 'Sign Out', getStarted: 'Get Started' },
+    nav: { shop: 'Shop', dashboard: 'Dashboard', signOut: 'Sign Out', getStarted: 'Get Started', map: 'Map', support: 'Support', orders: 'Orders' },
     hero: { badge: 'Direct Farm to Consumer', headline1: 'Farm Fresh.', headline2: 'Direct to You.', sub: 'Agrilink connects small-scale farmers directly with consumers — no middlemen, fairer prices, fresher produce.', cta1: 'Shop Fresh Produce', cta2: 'Join as Farmer' },
     howItWorks: { label: 'How It Works', title: 'From field to table,', titleGray: 'simplified.', step1Title: 'Farmers List Produce', step1Desc: 'Small-scale farmers create listings with prices, availability, and delivery options — directly on Agrilink.', step2Title: 'Consumers Browse & Order', step2Desc: 'Buyers discover local farmers, browse fresh produce, and place orders with a single click.', step3Title: 'Direct Delivery or Pickup', step3Desc: 'Farmers deliver to your door or you pick up locally — zero middlemen, maximum freshness.' },
     shop: { title: 'Shop Direct', subtitle: 'from farmers.', searchPlaceholder: 'Search products, farmers...', filters: { all: 'All', delivery: 'Delivery', pickup: 'Pickup' }, categories: { all: 'All', vegetables: 'Vegetables', fruits: 'Fruits', grains: 'Grains', dairy: 'Dairy', other: 'Other' }, priceRange: 'Price Range', noResults: 'No products found.' },
@@ -70,7 +70,7 @@ export const translations = {
     },
   },
   hi: {
-    nav: { shop: 'दुकान', dashboard: 'डैशबोर्ड', signOut: 'साइन आउट', getStarted: 'शुरू करें' },
+    nav: { shop: 'दुकान', dashboard: 'डैशबोर्ड', signOut: 'साइन आउट', getStarted: 'शुरू करें', map: 'नक्शा', support: 'सहायता', orders: 'ऑर्डर' },
     hero: { badge: 'सीधे खेत से उपभोक्ता तक', headline1: 'खेत से ताज़ा।', headline2: 'सीधे आपके पास।', sub: 'एग्रीलिंक छोटे किसानों को सीधे उपभोक्ताओं से जोड़ता है — कोई बिचौलिया नहीं, उचित मूल्य, ताज़ा उपज।', cta1: 'ताज़ी उपज खरीदें', cta2: 'किसान के रूप में जुड़ें' },
     howItWorks: { label: 'कैसे काम करता है', title: 'खेत से थाली तक,', titleGray: 'सरल बना दिया।', step1Title: 'किसान उपज सूचीबद्ध करते हैं', step1Desc: 'छोटे किसान सीधे एग्रीलिंक पर मूल्य, उपलब्धता और डिलीवरी विकल्पों के साथ लिस्टिंग बनाते हैं।', step2Title: 'उपभोक्ता ब्राउज़ और ऑर्डर करते हैं', step2Desc: 'खरीदार स्थानीय किसानों को खोजते हैं, ताज़ी उपज ब्राउज़ करते हैं, और एक क्लिक में ऑर्डर देते हैं।', step3Title: 'सीधी डिलीवरी या पिकअप', step3Desc: 'किसान आपके दरवाजे तक पहुँचाते हैं या आप स्थानीय रूप से पिकअप करें — कोई बिचौलिया नहीं, अधिकतम ताज़गी।' },
     shop: { title: 'सीधे खरीदें', subtitle: 'किसानों से।', searchPlaceholder: 'उत्पाद, किसान खोजें...', filters: { all: 'सभी', delivery: 'डिलीवरी', pickup: 'पिकअप' }, categories: { all: 'सभी', vegetables: 'सब्जियाँ', fruits: 'फल', grains: 'अनाज', dairy: 'डेयरी', other: 'अन्य' }, priceRange: 'मूल्य सीमा', noResults: 'कोई उत्पाद नहीं मिला।' },
@@ -138,7 +138,7 @@ export const translations = {
     },
   },
   kn: {
-    nav: { shop: 'ಅಂಗಡಿ', dashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್', signOut: 'ಸೈನ್ ಔಟ್', getStarted: 'ಪ್ರಾರಂಭಿಸಿ' },
+    nav: { shop: 'ಅಂಗಡಿ', dashboard: 'ಡ್ಯಾಶ್‌ಬೋರ್ಡ್', signOut: 'ಸೈನ್ ಔಟ್', getStarted: 'ಪ್ರಾರಂಭಿಸಿ', map: 'ನಕ್ಷೆ', support: 'ಸಹಾಯ', orders: 'ಆರ್ಡರ್‌ಗಳು' },
     hero: { badge: 'ನೇರ ಹೊಲದಿಂದ ಗ್ರಾಹಕರಿಗೆ', headline1: 'ಹೊಲದ ತಾಜಾ.', headline2: 'ನೇರ ನಿಮ್ಮ ಕೈಗೆ.', sub: 'ಎಗ್ರಿಲಿಂಕ್ ಸಣ್ಣ ರೈತರನ್ನು ನೇರವಾಗಿ ಗ್ರಾಹಕರೊಂದಿಗೆ ಸಂಪರ್ಕಿಸುತ್ತದೆ — ಮಧ್ಯವರ್ತಿಗಳಿಲ್ಲ, ನ್ಯಾಯೋಚಿತ ಬೆಲೆ, ತಾಜಾ ಉತ್ಪನ್ನ.', cta1: 'ತಾಜಾ ಉತ್ಪನ್ನ ಕೊಳ್ಳಿ', cta2: 'ರೈತರಾಗಿ ಸೇರಿ' },
     howItWorks: { label: 'ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ', title: 'ಹೊಲದಿಂದ ಮೇಜಿಗೆ,', titleGray: 'ಸರಳವಾಗಿಸಲಾಗಿದೆ.', step1Title: 'ರೈತರು ಉತ್ಪನ್ನ ಪಟ್ಟಿ ಮಾಡುತ್ತಾರೆ', step1Desc: 'ಸಣ್ಣ ರೈತರು ಬೆಲೆ, ಲಭ್ಯತೆ ಮತ್ತು ವಿತರಣಾ ಆಯ್ಕೆಗಳೊಂದಿಗೆ ನೇರವಾಗಿ ಎಗ್ರಿಲಿಂಕ್‌ನಲ್ಲಿ ಪಟ್ಟಿಗಳನ್ನು ರಚಿಸುತ್ತಾರೆ.', step2Title: 'ಗ್ರಾಹಕರು ಬ್ರೌಸ್ ಮತ್ತು ಆರ್ಡರ್ ಮಾಡುತ್ತಾರೆ', step2Desc: 'ಖರೀದಿದಾರರು ಸ್ಥಳೀಯ ರೈತರನ್ನು ಹುಡುಕುತ್ತಾರೆ, ತಾಜಾ ಉತ್ಪನ್ನ ಬ್ರೌಸ್ ಮಾಡುತ್ತಾರೆ ಮತ್ತು ಒಂದೇ ಕ್ಲಿಕ್‌ನಲ್ಲಿ ಆರ್ಡರ್ ನೀಡುತ್ತಾರೆ.', step3Title: 'ನೇರ ವಿತರಣೆ ಅಥವಾ ಪಿಕಪ್', step3Desc: 'ರೈತರು ನಿಮ್ಮ ಬಾಗಿಲಿಗೆ ತಲುಪಿಸುತ್ತಾರೆ ಅಥವಾ ನೀವು ಸ್ಥಳೀಯವಾಗಿ ಪಿಕಪ್ ಮಾಡಿ — ಮಧ್ಯವರ್ತಿಗಳಿಲ್ಲ, ಗರಿಷ್ಠ ತಾಜಾತನ.' },
     shop: { title: 'ನೇರ ಕೊಳ್ಳಿ', subtitle: 'ರೈತರಿಂದ.', searchPlaceholder: 'ಉತ್ಪನ್ನ, ರೈತರ ಹುಡುಕಿ...', filters: { all: 'ಎಲ್ಲ', delivery: 'ವಿತರಣೆ', pickup: 'ಪಿಕಪ್' }, categories: { all: 'ಎಲ್ಲ', vegetables: 'ತರಕಾರಿ', fruits: 'ಹಣ್ಣು', grains: 'ಧಾನ್ಯ', dairy: 'ಡೇರಿ', other: 'ಇತರ' }, priceRange: 'ಬೆಲೆ ಶ್ರೇಣಿ', noResults: 'ಯಾವುದೇ ಉತ್ಪನ್ನ ಕಂಡುಬಂದಿಲ್ಲ.' },

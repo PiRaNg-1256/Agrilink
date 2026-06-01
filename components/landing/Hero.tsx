@@ -10,7 +10,7 @@ import { useLanguage } from '@/lib/i18n/LanguageContext'
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
-  const { t } = useLanguage()
+  const { t, locale } = useLanguage()
   const heroRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const bgRef = useRef<HTMLDivElement>(null)
@@ -58,7 +58,7 @@ export default function Hero() {
 
       <div ref={contentRef} className="text-center px-4 max-w-5xl mx-auto">
         <div className="mb-4 inline-block animate-fade-in-up" style={{ animationDelay: '0ms' }}>
-          <span className="text-xs font-bold tracking-[0.3em] text-green-400 uppercase border border-green-400/30 px-4 py-1.5 rounded-full">
+          <span className={`text-xs font-bold text-green-400 border border-green-400/30 px-4 py-1.5 rounded-full ${locale === 'en' ? 'tracking-[0.3em] uppercase' : 'tracking-normal'}`}>
             {t.hero.badge}
           </span>
         </div>
