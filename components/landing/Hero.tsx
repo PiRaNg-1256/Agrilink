@@ -5,10 +5,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowDown } from 'lucide-react'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
+  const { t } = useLanguage()
   const heroRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const bgRef = useRef<HTMLDivElement>(null)
@@ -57,23 +59,23 @@ export default function Hero() {
       <div ref={contentRef} className="text-center px-4 max-w-5xl mx-auto">
         <div className="mb-4 inline-block animate-fade-in-up" style={{ animationDelay: '0ms' }}>
           <span className="text-xs font-bold tracking-[0.3em] text-green-400 uppercase border border-green-400/30 px-4 py-1.5 rounded-full">
-            Direct Farm to Consumer
+            {t.hero.badge}
           </span>
         </div>
         <h1
           className="text-6xl md:text-8xl font-black leading-none mb-6 animate-fade-in-up"
           style={{ animationDelay: '150ms' }}
         >
-          <span className="block text-white">Farm Fresh.</span>
+          <span className="block text-white">{t.hero.headline1}</span>
           <span className="block bg-gradient-to-r from-green-400 to-yellow-400 bg-clip-text text-transparent">
-            Direct to You.
+            {t.hero.headline2}
           </span>
         </h1>
         <p
           className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fade-in-up"
           style={{ animationDelay: '300ms' }}
         >
-          Agrilink connects small-scale farmers directly with consumers — no middlemen, fairer prices, fresher produce.
+          {t.hero.sub}
         </p>
         <div
           className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up"
@@ -81,12 +83,12 @@ export default function Hero() {
         >
           <Link href="/shop">
             <Button size="lg" className="bg-green-500 hover:bg-green-400 text-black font-bold px-8 text-base">
-              Shop Fresh Produce
+              {t.hero.cta1}
             </Button>
           </Link>
           <Link href="/auth">
             <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 text-base">
-              Join as Farmer
+              {t.hero.cta2}
             </Button>
           </Link>
         </div>
