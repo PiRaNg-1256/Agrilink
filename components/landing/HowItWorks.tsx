@@ -27,14 +27,14 @@ function StepCard({ icon: Icon, number, title, desc, delay }: { icon: typeof Spr
   )
 }
 
-function TitleSection({ label, title, titleGray }: { label: string; title: string; titleGray: string }) {
+function TitleSection({ label, title, titleGray, locale }: { label: string; title: string; titleGray: string; locale: string }) {
   const { ref, visible } = useInView()
   return (
     <div
       ref={ref}
       className={`text-center mb-20 ${visible ? 'animate-fade-in-up' : 'invisible-until-visible'}`}
     >
-      <span className="text-xs font-bold tracking-[0.3em] text-green-400 uppercase">{label}</span>
+      <span className={`text-xs font-bold text-green-400 uppercase ${locale === 'en' ? 'tracking-[0.3em]' : 'tracking-normal'}`}>{label}</span>
       <h2 className="text-4xl md:text-5xl font-black text-white mt-4">
         {title}<br /><span className="text-gray-500">{titleGray}</span>
       </h2>
@@ -43,7 +43,7 @@ function TitleSection({ label, title, titleGray }: { label: string; title: strin
 }
 
 export default function HowItWorks() {
-  const { t } = useLanguage()
+  const { t, locale } = useLanguage()
   const steps = [
     { title: t.howItWorks.step1Title, desc: t.howItWorks.step1Desc },
     { title: t.howItWorks.step2Title, desc: t.howItWorks.step2Desc },
@@ -52,7 +52,7 @@ export default function HowItWorks() {
   return (
     <section className="py-32 px-4">
       <div className="max-w-7xl mx-auto">
-        <TitleSection label={t.howItWorks.label} title={t.howItWorks.title} titleGray={t.howItWorks.titleGray} />
+        <TitleSection label={t.howItWorks.label} title={t.howItWorks.title} titleGray={t.howItWorks.titleGray} locale={locale} />
         <div className="grid md:grid-cols-3 gap-8">
           {steps.map((step, i) => (
             <StepCard key={STEP_NUMBERS[i]} icon={STEP_ICONS[i]} number={STEP_NUMBERS[i]} title={step.title} desc={step.desc} delay={delays[i]} />

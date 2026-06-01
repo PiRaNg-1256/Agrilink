@@ -46,7 +46,7 @@ export default function CropPriceTicker() {
     <section className="py-24 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <span className="text-xs font-bold tracking-[0.3em] text-green-400 uppercase">{t.cropPrices.label}</span>
+          <span className={`text-xs font-bold text-green-400 uppercase ${locale === 'en' ? 'tracking-[0.3em]' : 'tracking-normal'}`}>{t.cropPrices.label}</span>
           <h2 className="text-4xl font-black text-white mt-3">{t.cropPrices.title}</h2>
           <p className="text-gray-500 text-sm mt-2">{t.cropPrices.subtitle}</p>
           <p className="text-gray-600 text-xs mt-1">{t.cropPrices.lastUpdated}: {lastUpdated.toLocaleTimeString()}</p>

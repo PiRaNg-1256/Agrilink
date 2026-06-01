@@ -18,7 +18,7 @@ export default function SeasonalHighlights() {
     <section className="py-24 px-4 bg-white/[0.015]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <span className="text-xs font-bold tracking-[0.3em] text-green-400 uppercase">{t.seasonalHighlights.label}</span>
+          <span className={`text-xs font-bold text-green-400 uppercase ${locale === 'en' ? 'tracking-[0.3em]' : 'tracking-normal'}`}>{t.seasonalHighlights.label}</span>
           <h2 className="text-4xl font-black text-white mt-3">
             {t.seasonalHighlights.title} <span className="text-green-400">{t.seasonalHighlights.titleGreen}</span>
           </h2>

@@ -63,7 +63,7 @@ export default function Hero() {
           </span>
         </div>
         <h1
-          className="text-6xl md:text-8xl font-black leading-none mb-6 animate-fade-in-up"
+          className={`font-black mb-6 animate-fade-in-up ${locale === 'en' ? 'text-6xl md:text-8xl leading-none' : 'text-4xl md:text-6xl leading-snug'}`}
           style={{ animationDelay: '150ms' }}
         >
           <span className="block text-white">{t.hero.headline1}</span>

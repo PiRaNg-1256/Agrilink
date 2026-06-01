@@ -37,6 +37,7 @@ export default function TicketThreadClient({ ticket, messages, userId }: Props) 
   const { t } = useLanguage()
   const [reply, setReply] = useState('')
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const canReply = ticket.status !== 'closed' && ticket.status !== 'resolved'
   const canResolve = ticket.status === 'open' || ticket.status === 'in_progress'
@@ -44,10 +45,14 @@ export default function TicketThreadClient({ ticket, messages, userId }: Props) 
   async function handleSend() {
     if (!reply.trim()) return
     setLoading(true)
+    setError('')
     try {
-      await sendMessage(ticket.id, reply)
+      const result = await sendMessage(ticket.id, reply)
+      if (result?.error) { setError(result.error); return }
       setReply('')
       router.refresh()
+    } catch (e: any) {
+      setError(e?.message ?? 'Failed to send message')
     } finally {
       setLoading(false)
     }
@@ -55,9 +60,12 @@ export default function TicketThreadClient({ ticket, messages, userId }: Props) 
 
   async function handleClose() {
     setLoading(true)
+    setError('')
     try {
       await closeTicket(ticket.id)
       router.refresh()
+    } catch (e: any) {
+      setError(e?.message ?? 'Failed to update ticket')
     } finally {
       setLoading(false)
     }
@@ -126,6 +134,7 @@ export default function TicketThreadClient({ ticket, messages, userId }: Props) 
               rows={4}
               className="w-full bg-[#0d0d1a] border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 resize-none focus:outline-none focus:border-[#22c55e] transition-colors"
             />
+            {error && <p className="text-red-400 text-sm mt-2">{error}</p>}
             <div className="flex items-center justify-between mt-3">
               <div />
               <button

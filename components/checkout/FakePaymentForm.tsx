@@ -7,8 +7,10 @@ import { useCart } from '@/components/cart/CartProvider'
 import { createOrder } from '@/lib/actions/orders'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 export default function FakePaymentForm() {
+  const { t } = useLanguage()
   const { items, total, clearCart } = useCart()
   const [deliveryType, setDeliveryType] = useState<'delivery' | 'pickup'>('delivery')
   const [address, setAddress] = useState('')
@@ -38,7 +40,7 @@ export default function FakePaymentForm() {
       <div>
         <Label className="text-gray-300 text-sm mb-2 block">Delivery Method</Label>
         <div className="grid grid-cols-2 gap-3">
-          {[['delivery','🚚 Home Delivery'], ['pickup','🏪 Farm Pickup']].map(([val, label]) => (
+          {[['delivery', `🚚 ${t.checkout.homeDelivery}`], ['pickup', `🏪 ${t.checkout.farmPickup}`]].map(([val, label]) => (
             <button key={val} onClick={() => setDeliveryType(val as any)}
               className={`p-3 rounded-xl border text-sm font-medium transition-colors ${deliveryType === val ? 'border-green-400 bg-green-500/20 text-green-400' : 'border-white/10 text-gray-400 hover:border-white/20'}`}>
               {label}
@@ -48,14 +50,14 @@ export default function FakePaymentForm() {
       </div>
       {deliveryType === 'delivery' && (
         <div>
-          <Label className="text-gray-300 text-sm">Delivery Address</Label>
+          <Label className="text-gray-300 text-sm">{t.checkout.deliveryAddress}</Label>
           <Input value={address} onChange={e => setAddress(e.target.value)}
             className="mt-1 bg-white/5 border-white/10 text-white" placeholder="Full address including pincode" />
         </div>
       )}
 
       <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <p className="text-gray-400 text-xs uppercase tracking-widest mb-4">Payment Details (Demo)</p>
+        <p className="text-gray-400 text-xs uppercase tracking-widest mb-4">{t.checkout.paymentDetails}</p>
         <div className="flex gap-3 mb-4">
           {[['upi','UPI'], ['card','Card']].map(([val, label]) => (
             <button key={val} onClick={() => setPayMethod(val as any)}
@@ -98,7 +100,7 @@ export default function FakePaymentForm() {
 
       <Button onClick={handlePay} disabled={isPending} size="lg"
         className="w-full bg-gradient-to-r from-green-500 to-green-400 hover:from-green-400 hover:to-green-300 text-black font-black text-base">
-        {isPending ? 'Placing Order...' : `Pay ₹${total.toFixed(2)}`}
+        {isPending ? t.checkout.placing : `${t.checkout.pay} ₹${total.toFixed(2)}`}
       </Button>
     </div>
   )

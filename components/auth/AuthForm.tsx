@@ -7,8 +7,10 @@ import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
 import { Leaf } from 'lucide-react'
 import type { UserRole } from '@/lib/types'
+import { useLanguage } from '@/lib/i18n/LanguageContext'
 
 export default function AuthForm() {
+  const { t } = useLanguage()
   const [mode, setMode] = useState<'login' | 'register'>('login')
   const [role, setRole] = useState<UserRole>('consumer')
   const [email, setEmail] = useState('')
@@ -31,7 +33,13 @@ export default function AuthForm() {
         // Auto sign in after register
         const { data, error: signInError } = await supabase.auth.signInWithPassword({ email, password })
         if (signInError) throw signInError
-        const { data: profile } = await supabase.from('profiles').select('role, is_admin').eq('id', data.user.id).single()
+        let { data: profile } = await supabase.from('profiles').select('role, is_admin').eq('id', data.user.id).single()
+        if (!profile) {
+          // DB trigger may not have fired yet — wait and retry once
+          await new Promise(r => setTimeout(r, 800))
+          const { data: retried } = await supabase.from('profiles').select('role, is_admin').eq('id', data.user.id).single()
+          profile = retried
+        }
         window.location.href = profile?.is_admin ? '/admin' : profile?.role === 'farmer' ? '/dashboard' : '/shop'
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({ email, password })
@@ -59,28 +67,28 @@ export default function AuthForm() {
         <div className="rounded-2xl border border-white/10 bg-white/5 p-8">
           <div className="flex rounded-lg bg-white/5 p-1 mb-6">
             <button onClick={() => setMode('login')} className={`flex-1 py-2 rounded-md text-sm font-medium transition-colors ${mode === 'login' ? 'bg-green-500 text-black' : 'text-gray-400'}`}>
-              Sign In
+              {t.auth.signIn}
             </button>
             <button onClick={() => setMode('register')} className={`flex-1 py-2 rounded-md text-sm font-medium transition-colors ${mode === 'register' ? 'bg-green-500 text-black' : 'text-gray-400'}`}>
-              Register
+              {t.auth.register}
             </button>
           </div>
 
           {mode === 'register' && (
             <>
               <div className="mb-4">
-                <Label className="text-gray-300 text-sm mb-2 block">I am a...</Label>
+                <Label className="text-gray-300 text-sm mb-2 block">{t.auth.iAmA}</Label>
                 <div className="grid grid-cols-2 gap-3">
                   {(['consumer', 'farmer'] as UserRole[]).map(r => (
                     <button key={r} onClick={() => setRole(r)}
                       className={`p-3 rounded-xl border text-sm font-medium capitalize transition-colors ${role === r ? 'border-green-400 bg-green-500/20 text-green-400' : 'border-white/10 text-gray-400 hover:border-white/20'}`}>
-                      {r === 'consumer' ? '🛒 Consumer' : '🌾 Farmer'}
+                      {r === 'consumer' ? `🛒 ${t.auth.consumer}` : `🌾 ${t.auth.farmer}`}
                     </button>
                   ))}
                 </div>
               </div>
               <div className="mb-4">
-                <Label htmlFor="name" className="text-gray-300 text-sm">Full Name</Label>
+                <Label htmlFor="name" className="text-gray-300 text-sm">{t.auth.fullName}</Label>
                 <Input id="name" value={fullName} onChange={e => setFullName(e.target.value)}
                   className="mt-1 bg-white/5 border-white/10 text-white" placeholder="Your full name" />
               </div>
@@ -89,17 +97,17 @@ export default function AuthForm() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="email" className="text-gray-300 text-sm">Email</Label>
+              <Label htmlFor="email" className="text-gray-300 text-sm">{t.auth.email}</Label>
               <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)}
                 required className="mt-1 bg-white/5 border-white/10 text-white" placeholder="you@example.com" />
             </div>
             <div>
-              <Label htmlFor="password" className="text-gray-300 text-sm">Password</Label>
+              <Label htmlFor="password" className="text-gray-300 text-sm">{t.auth.password}</Label>
               <Input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)}
                 required className="mt-1 bg-white/5 border-white/10 text-white" placeholder="••••••••" />
             </div>
             <Button type="submit" disabled={loading} className="w-full bg-green-500 hover:bg-green-400 text-black font-bold">
-              {loading ? 'Loading...' : mode === 'login' ? 'Sign In' : 'Create Account'}
+              {loading ? t.auth.loading : mode === 'login' ? t.auth.signIn : t.auth.createAccount}
             </Button>
           </form>
         </div>

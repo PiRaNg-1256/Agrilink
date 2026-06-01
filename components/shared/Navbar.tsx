@@ -55,6 +55,9 @@ export default function Navbar() {
           {profile?.role === 'farmer' && (
             <Link href="/dashboard" className="text-sm text-gray-300 hover:text-green-400 transition-colors">{t.nav.dashboard}</Link>
           )}
+          {(profile as any)?.is_admin && (
+            <Link href="/admin" className="text-sm text-yellow-400 hover:text-yellow-300 transition-colors">Admin</Link>
+          )}
         </div>
 
         <div className="flex items-center gap-3">

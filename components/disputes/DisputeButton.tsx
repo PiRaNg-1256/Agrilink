@@ -19,6 +19,7 @@ export default function DisputeButton({ orderId, existingDispute }: Props) {
   const [reason, setReason] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   if (done || existingDispute) {
     const status = existingDispute?.status ?? 'open'
@@ -41,13 +42,19 @@ export default function DisputeButton({ orderId, existingDispute }: Props) {
   async function submit() {
     if (!reason.trim()) return
     setSubmitting(true)
-    const fd = new FormData()
-    fd.append('order_id', orderId)
-    fd.append('reason', reason)
-    await fileDispute(fd)
-    setDone(true)
-    setOpen(false)
-    setSubmitting(false)
+    setSubmitError('')
+    try {
+      const fd = new FormData()
+      fd.append('order_id', orderId)
+      fd.append('reason', reason)
+      await fileDispute(fd)
+      setDone(true)
+      setOpen(false)
+    } catch (e: any) {
+      setSubmitError(e?.message ?? 'Failed to file dispute. Try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -60,6 +67,7 @@ export default function DisputeButton({ orderId, existingDispute }: Props) {
         rows={3}
         className="w-full bg-gray-900 text-white rounded p-2 text-sm border border-gray-700 mb-2 resize-none"
       />
+      {submitError && <p className="text-red-400 text-xs mt-1">{submitError}</p>}
       <div className="flex gap-2">
         <button
           onClick={submit}

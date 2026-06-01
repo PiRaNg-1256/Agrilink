@@ -1,8 +1,14 @@
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
 import Navbar from '@/components/shared/Navbar'
 import Footer from '@/components/shared/Footer'
 import FakePaymentForm from '@/components/checkout/FakePaymentForm'
 
-export default function CheckoutPage() {
+export default async function CheckoutPage() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/auth')
+
   return (
     <main>
       <Navbar />
